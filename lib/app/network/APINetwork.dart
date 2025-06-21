@@ -6,11 +6,12 @@ import 'package:ecommerce_demo_job_task/app/models/product_list_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-class Apinetwork {
+class ApiNetwork {
+
   static Future<List<Products>> getProductList() async {
-    var productlistUrl = Uri.parse(Apis.productList);
+    var productListUrl = Uri.parse(Apis.productList);
     try {
-      var response = await http.get(productlistUrl);
+      var response = await http.get(productListUrl);
       if (response.statusCode == 200) {
         List<dynamic> jsonData = jsonDecode(response.body)['products'];
         return jsonData.map((json) => Products.fromJson(json)).toList();
@@ -38,4 +39,28 @@ class Apinetwork {
       return [];
     }
   }
+
+  // static Future<List<QouteModel>> fetchQuotes() async {
+  //   var url = Uri.parse(Apis.quoteList);
+  //   try {
+  //     var response = await http.get(url);
+  //     if (response.statusCode == 200) {
+  //       List<dynamic> jsonData = jsonDecode(response.body);
+  //       return jsonData.map((json) => QouteModel.fromJson(json)).toList();
+  //     } else {
+  //       throw Exception('Failed to load quotes');
+  //     }
+  //   } catch (e) {
+  //     debugPrint('Error: $e');
+  //     return [];
+  //   }
+  // }
+
+  // static Future<List<QouteModel>> fetchQoutes() async{
+  //   var url = Uri.parse(Apis.qouteList);
+  //   try{
+  //     var response =  await http.get(url);
+  //   }
+
+  // }
 }
